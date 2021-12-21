@@ -21,7 +21,7 @@ class MyPainter extends CustomPainter {
           Rect.fromCenter(
             center: Offset(size.height / 2, size.width / 2),
             height: size.height,
-            width: size.width,
+            width: size.width, 
           ), // 5.
           degToRad(180), // 6.
           degToRad(sweepAngle!), // 7.
