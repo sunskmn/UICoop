@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/pages/chart_page.dart';
+import 'package:flutter_application_1/pages/home_page.dart';
+
+import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_database/ui/firebase_animated_list.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter/material.dart';
 import 'package:flutter_application_1/pages/semicircle.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
+  double? temperature;
+  DatabaseError? error;
+  HomePage({this.temperature, this.error});
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -36,14 +46,14 @@ class _HomePageState extends State<HomePage> {
               color: Colors.blue),
           Container(
             child: Center(
-              child: Text(
-                '30°C',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 60,
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
+              child: widget.error == null
+                  ? Text(
+                      '${widget.temperature}°C',
+                      style:
+                          TextStyle(fontSize: 40, fontWeight: FontWeight.w600),
+                    )
+                  : Text(
+                      'Error retrieving button tap count:\n${widget.error!.message}'),
             ),
             width: 200,
             height: 200,
